@@ -1,0 +1,77 @@
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  min-height: 80vh;
+}
+
+.landing-header {
+  margin-bottom: 40px;
+}
+
+.landing-header h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.landing-header p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.choice-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.choice-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 30px;
+  width: 100%;
+  max-width: 350px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.choice-card h2 {
+  margin-top: 0;
+  color: #0056b3;
+}
+
+.choice-card p {
+  flex-grow: 1; /* Pushes the button to the bottom */
+  color: #555;
+  line-height: 1.6;
+}
+
+.choice-button {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+  background-color: #007bff;
+  transition: background-color 0.3s ease;
+}
+
+.choice-button:hover {
+  background-color: #0056b3;
+}
+
+.shelter-button {
+  background-color: #28a745; /* Green for shelters */
+}
+
+.shelter-button:hover {
+  background-color: #218838;
+}
