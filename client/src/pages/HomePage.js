@@ -1,9 +1,9 @@
-// In client/src/pages/HomePage.js
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Modal from '../components/Modal';
-import './css/HomePage.css'; // <-- Import the new CSS
+import Modal from '../components/Modal'; // This is for the details view
+import ContactShelterModal from '../components/ContactShelterModal'; // This is for the message form
+import PetCard from '../components/PetCard'; // 1. IMPORT THE PETCARD COMPONENT
+import './css/HomePage.css';
 
 const HomePage = () => {
   const [pets, setPets] = useState([]);
@@ -17,56 +17,59 @@ const HomePage = () => {
     search: ''
   });
 
-  const fetchPets = async () => {
-    setLoading(true);
-    try {
-      // Build query string from filters
-      const queryString = new URLSearchParams(filters).toString();
-      const response = await axios.get(`http://localhost:5000/api/pets?${queryString}`);
-      setPets(response.data);
-    } catch (error) {
-      console.error("Error fetching pets:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // --- STATE MANAGEMENT FOR BOTH MODALS ---
+  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [selectedPet, setSelectedPet] = useState(null);
 
   // Fetch pets whenever filters change
   useEffect(() => {
+    const fetchPets = async () => {
+      setLoading(true);
+      try {
+        const queryString = new URLSearchParams(filters).toString();
+        // The proxy in package.json handles the domain, so we can use a relative path
+        const response = await axios.get(`/api/pets?${queryString}`);
+        setPets(response.data);
+      } catch (error) {
+        console.error("Error fetching pets:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
     fetchPets();
-  }, [filters]); // Dependency array: re-run when filters state changes
+  }, [filters]);
 
+  // --- MODAL HANDLERS ---
   const handleViewDetails = async (petId) => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/pets/${petId}`);
-      setSelectedPet(response.data); // Store the full pet details
-      setIsModalOpen(true); // Open the modal
+      const response = await axios.get(`/api/pets/${petId}`);
+      setSelectedPet(response.data);
+      setIsDetailsModalOpen(true);
     } catch (error) {
       console.error("Error fetching pet details:", error);
       alert("Could not load pet details.");
     }
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedPet(null);
+  const handleAdoptClick = () => {
+    if (selectedPet) {
+      setIsDetailsModalOpen(false);
+      setIsContactModalOpen(true);
+    }
   };
   
+  const closeDetailsModal = () => setIsDetailsModalOpen(false);
+  const closeContactModal = () => setIsContactModalOpen(false);
+
+  // --- FILTER HANDLERS ---
   const handleFilterChange = (e) => {
     setFilters({ ...filters, [e.target.name]: e.target.value });
   };
 
   const handleClearFilters = () => {
     setFilters({
-      species: '',
-      breed: '',
-      min_age: '',
-      max_age: '',
-      gender: '',
-      search: ''
+      species: '', breed: '', min_age: '', max_age: '', gender: '', search: ''
     });
   };
 
@@ -82,103 +85,87 @@ const HomePage = () => {
         <input
           type="text"
           name="search"
-          placeholder="Search by name, species, breed or description..."
+          placeholder="Search by name, species, breed..."
           value={filters.search}
           onChange={handleFilterChange}
           className="search-input"
         />
-        <div className="filters-grid">
-          <select name="species" value={filters.species} onChange={handleFilterChange}>
-            <option value="">All Species</option>
-            <option value="Dog">Dog</option>
-            <option value="Cat">Cat</option>
-            <option value="Bird">Bird</option>
-            <option value="Rabbit">Rabbit</option>
-            {/* Add more species as needed */}
-          </select>
-
-          <input
-            type="text"
-            name="breed"
-            placeholder="Breed"
-            value={filters.breed}
-            onChange={handleFilterChange}
-          />
-
-          <input
-            type="number"
-            name="min_age"
-            placeholder="Min Age"
-            value={filters.min_age}
-            onChange={handleFilterChange}
-          />
-          <input
-            type="number"
-            name="max_age"
-            placeholder="Max Age"
-            value={filters.max_age}
-            onChange={handleFilterChange}
-          />
-          <select name="gender" value={filters.gender} onChange={handleFilterChange}>
-            <option value="">All Genders</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
-          <button onClick={handleClearFilters} className="clear-filters-button">Clear Filters</button>
-        </div>
+         <div className="filters-grid">
+           <select name="species" value={filters.species} onChange={handleFilterChange}>
+             <option value="">All Species</option>
+             <option value="Dog">Dog</option>
+             <option value="Cat">Cat</option>
+           </select>
+           <button onClick={handleClearFilters} className="clear-filters-button">Clear</button>
+         </div>
       </div>
 
       {loading ? (
-        <p className="loading-message">Loading amazing pets...</p>
+        <p className="loading-message">Finding amazing pets...</p>
       ) : pets.length === 0 ? (
-        <p className="no-pets-message">No pets found matching your criteria. Try adjusting your filters!</p>
+        <p className="no-pets-message">No pets found. Try adjusting your filters!</p>
       ) : (
         <div className="pet-grid">
+          {/* 2. USE THE REUSABLE PETCARD COMPONENT */}
           {pets.map(pet => (
-            <div key={pet.pet_id} className="pet-card">
-              <img src={pet.image_url || 'https://via.placeholder.com/400x300'} alt={pet.name} />
-              <div className="pet-card-content">
-                <h3>{pet.name}</h3>
-                <p><strong>Species:</strong> {pet.species}</p>
-                {pet.breed && <p><strong>Breed:</strong> {pet.breed}</p>}
-                <p><strong>Age:</strong> {pet.age} years</p>
-                <p><strong>Gender:</strong> {pet.gender}</p>
-                <p>{pet.description.substring(0, 100)}...</p> {/* Shorten description */}
-                <button className="view-details-button" onClick={() => handleViewDetails(pet.pet_id)}>
-                  View Details
-                </button>
-              </div>
-            </div>
+            <PetCard 
+              key={pet.pet_id} 
+              pet={pet} 
+              onViewDetailsClick={handleViewDetails} 
+            />
           ))}
         </div>
       )}
-      {/* Conditionally render the Modal */}
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
+
+      {/* Details Modal */}
+      <Modal isOpen={isDetailsModalOpen} onClose={closeDetailsModal}>
         {selectedPet && (
           <div className="pet-details-modal-content">
-            <img src={selectedPet.image_url || 'https://via.placeholder.com/600x400'} alt={selectedPet.name} />
+            <img 
+              className="pet-details-image"
+              src={selectedPet.image_url || 'https://placehold.co/600x400/EEE/31343C?text=Pet+Image'} 
+              alt={selectedPet.name} 
+            />
             <div className="pet-info-section">
+              <span className={`status-tag status-${selectedPet.adoption_status?.toLowerCase()}`}>
+                {selectedPet.adoption_status}
+              </span>
               <h1>{selectedPet.name}</h1>
               <p className="breed-info">{selectedPet.breed} ({selectedPet.species})</p>
+              
               <div className="details-grid">
                 <div><strong>Age:</strong> {selectedPet.age} years</div>
                 <div><strong>Gender:</strong> {selectedPet.gender}</div>
               </div>
+
               <h3>About {selectedPet.name}</h3>
-              <p>{selectedPet.description}</p>
+              <p className="pet-description-full">{selectedPet.description}</p>
+              
               <div className="shelter-info">
                 <h3>Shelter Information</h3>
                 <p><strong>Name:</strong> {selectedPet.shelter_name}</p>
                 <p><strong>Address:</strong> {selectedPet.shelter_address}</p>
-                <p><strong>Contact:</strong> {selectedPet.shelter_email}</p>
+                <p><strong>Contact:</strong> <a href={`mailto:${selectedPet.shelter_email}`}>{selectedPet.shelter_email}</a></p>
               </div>
-              <button className="adopt-button">Adopt Me!</button>
+              
+              <button className="adopt-button" onClick={handleAdoptClick}>Adopt Me!</button>
             </div>
           </div>
         )}
       </Modal>
+
+      {/* Contact Shelter Modal */}
+      {isContactModalOpen && selectedPet && (
+        <ContactShelterModal
+          shelterId={selectedPet.shelter_id}
+          petId={selectedPet.pet_id}
+          petName={selectedPet.name}
+          onClose={closeContactModal}
+        />
+      )}
     </div>
   );
 };
 
 export default HomePage;
+

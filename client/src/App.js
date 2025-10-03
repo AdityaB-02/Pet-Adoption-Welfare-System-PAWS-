@@ -7,40 +7,56 @@ import ShelterRegisterPage from './pages/ShelterRegisterPage';
 import ShelterLoginPage from './pages/ShelterLoginPage';
 import ShelterDashboard from './pages/ShelterDashboard';
 import ShelterPrivateRoute from './components/ShelterPrivateRoute';
-import Navbar from './components/Navbar';
 import LandingPage from './pages/LandingPage';
 import AddPetPage from './pages/AddPetPage';
 import EditPetPage from './pages/EditPetPage';
+
+// Import the components that will be nested in the dashboard
+import ShelterPetList from './components/ShelterPetList'; 
+import ShelterInbox from './pages/ShelterInbox'; // Make sure you've created this file
+import ShelterProfile from './components/ShelterProfile';
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        {/* A global Navbar could go here if you want it on every page */}
+        {/* <Navbar /> */}
         <Routes>
-          {/* This is the correct syntax for v6 */}
-           <Route path="/" element={<LandingPage />} /> 
+          {/* Public Routes */}
+          <Route path="/" element={<LandingPage />} /> 
           <Route path="/pets" element={<HomePage />} />
-
-          {/* User Routes */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-         
-          {/* Shelters Routes */}
           <Route path="/shelter/register" element={<ShelterRegisterPage />} />
           <Route path="/shelter/login" element={<ShelterLoginPage />} />
+          
+          {/* --- Shelter Private Routes --- */}
+
+          {/* 1. This is the new, nested dashboard route structure */}
           <Route 
             path="/shelter/dashboard" 
             element={
               <ShelterPrivateRoute>
                 <ShelterDashboard />
               </ShelterPrivateRoute>
-            } />
-             <Route 
+            }
+          >
+            {/* The index route is the default component shown for "/shelter/dashboard" */}
+            <Route index element={<ShelterPetList />} />
+            <Route path="inbox" element={<ShelterInbox />} />
+            <Route path="profile" element={<ShelterProfile />} />
+          </Route>
+
+          {/* 2. These are other protected routes that don't need the dashboard sidebar */}
+          <Route 
             path="/shelter/add-pet" 
             element={ <ShelterPrivateRoute><AddPetPage /></ShelterPrivateRoute> } 
           />
-          {/* You can add routes for other pages here later */}
-          {/* <Route path="/about" element={<AboutPage />} /> */}
+          <Route 
+            path="/shelter/edit-pet/:petId" 
+            element={ <ShelterPrivateRoute><EditPetPage /></ShelterPrivateRoute> } 
+          />
         </Routes>
       </div>
     </BrowserRouter>
@@ -48,3 +64,4 @@ function App() {
 }
 
 export default App;
+

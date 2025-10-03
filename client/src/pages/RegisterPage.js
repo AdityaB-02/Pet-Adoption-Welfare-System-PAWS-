@@ -7,12 +7,14 @@ const RegisterPage = () => {
   const [formData, setFormData] = useState({
     full_name: '',
     email: '',
+    phone_number: '', // 1. ADDED THIS LINE
     password: '',
     password2: '', // For password confirmation
     address: ''
   });
 
-  const { full_name, email, password, password2, address } = formData;
+  // 2. ADDED phone_number HERE
+  const { full_name, email, phone_number, password, password2, address } = formData;
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,7 +26,8 @@ const RegisterPage = () => {
       alert('Passwords do not match');
     } else {
       try {
-        const newUser = { full_name, email, password, address };
+        // 3. ADDED phone_number TO THE newUser OBJECT
+        const newUser = { full_name, email, phone_number, password, address };
         const response = await axios.post('http://localhost:5000/api/users/register', newUser);
         
         console.log('Registration successful!', response.data);
@@ -53,6 +56,13 @@ const RegisterPage = () => {
           <label htmlFor="email">Email Address</label>
           <input type="email" name="email" value={email} onChange={onChange} required />
         </div>
+        
+        {/* 4. ADDED THIS ENTIRE FORM GROUP BLOCK */}
+        <div className="form-group">
+          <label htmlFor="phone_number">Phone Number</label>
+          <input type="tel" name="phone_number" value={phone_number} onChange={onChange} />
+        </div>
+
         <div className="form-group">
           <label htmlFor="password">Password</label>
           <input type="password" name="password" value={password} onChange={onChange} minLength="6" required />

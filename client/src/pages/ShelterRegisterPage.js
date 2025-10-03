@@ -7,13 +7,15 @@ const ShelterRegisterPage = () => {
   const [formData, setFormData] = useState({
     shelter_name: '',
     email: '',
+    phone_number: '', // 1. ADDED THIS
     password: '',
     password2: '',
     address: '',
     capacity: ''
   });
 
-  const { shelter_name, email, password, password2, address, capacity } = formData;
+  // 2. ADDED phone_number HERE
+  const { shelter_name, email, phone_number, password, password2, address, capacity } = formData;
 
   const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -23,7 +25,8 @@ const ShelterRegisterPage = () => {
       alert('Passwords do not match');
     } else {
       try {
-        const newShelter = { shelter_name, email, password, address, capacity };
+        // 3. ADDED phone_number TO THE newShelter OBJECT
+        const newShelter = { shelter_name, email, phone_number, password, address, capacity };
         const response = await axios.post('http://localhost:5000/api/shelters/register', newShelter);
         
         localStorage.setItem('token', response.data.token);
@@ -48,6 +51,13 @@ const ShelterRegisterPage = () => {
           <label>Email</label>
           <input type="email" name="email" value={email} onChange={onChange} required />
         </div>
+        
+        {/* 4. ADDED THIS ENTIRE FORM GROUP BLOCK */}
+        <div className="form-group">
+            <label>Phone Number</label>
+            <input type="tel" name="phone_number" value={phone_number} onChange={onChange} />
+        </div>
+
         <div className="form-group">
           <label>Password</label>
           <input type="password" name="password" value={password} onChange={onChange} minLength="6" required />
