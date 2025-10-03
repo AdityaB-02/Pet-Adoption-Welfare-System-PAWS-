@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './css/ContactShelterModal.css'; // We will create this CSS file next
+import './css/ContactShelterModal.css';
 
 const ContactShelterModal = ({ shelterId, petId, petName, onClose }) => {
     const [content, setContent] = useState('');
-    const [isSent, setIsSent] = useState(false); // State to track if message was sent
+    const [isSent, setIsSent] = useState(false);
     const [error, setError] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setError(''); // Clear previous errors
+        
+        // --- THIS IS THE NEW DEBUGGING LINE ---
+        console.log("'Send Message' button clicked! Form is being submitted.");
+
+        setError(''); 
         try {
             const token = localStorage.getItem('token');
             if (!token) {
@@ -20,29 +24,33 @@ const ContactShelterModal = ({ shelterId, petId, petName, onClose }) => {
             const config = { headers: { 'x-auth-token': token } };
             const body = { recipient_id: shelterId, pet_id: petId, content };
             
-            await axios.post('http://localhost:5000/api/messages', body, config);
+            await axios.post('/api/messages', body, config);
             
-            setIsSent(true); // Set state to true on success
+            setIsSent(true);
         } catch (err) {
-            setError('Failed to send message. Please try again later.');
-            console.error(err);
+            if (err.response && err.response.data && err.response.data.msg) {
+                setError(err.response.data.msg);
+            } else if (err.request) {
+                setError('Network Error: Could not connect to the server.');
+            } else {
+                setError('An unexpected error occurred.');
+            }
+            console.error("Full error object:", err);
         }
     };
 
-    // If the message is sent, show the success view
     if (isSent) {
         return (
             <div className="modal-backdrop" onClick={onClose}>
                 <div className="modal-content success-message" onClick={e => e.stopPropagation()}>
                     <h3>✔️ Message Sent!</h3>
-                    <p>The shelter has received your inquiry about {petName}. They will get back to you soon.</p>
+                    <p>The shelter has received your inquiry about {petName}.</p>
                     <button onClick={onClose}>Close</button>
                 </div>
             </div>
         );
     }
 
-    // Otherwise, show the message form
     return (
         <div className="modal-backdrop" onClick={onClose}>
             <div className="modal-content" onClick={e => e.stopPropagation()}>
@@ -50,7 +58,7 @@ const ContactShelterModal = ({ shelterId, petId, petName, onClose }) => {
                 <form onSubmit={handleSubmit}>
                     <textarea 
                         rows="6" 
-                        placeholder="Ask a question, express your interest, or arrange a visit..."
+                        placeholder="Ask a question..."
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
                         required

@@ -78,3 +78,40 @@
   text-decoration: underline;
 }
 
+/* --- NEW STYLES for the pet inquiry section --- */
+.pet-inquiry-details {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #e9ecef; /* A different background to stand out */
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  text-align: left;
+}
+
+.pet-inquiry-details h4 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  color: #34495e;
+  font-size: 1.1rem;
+}
+
+.pet-info {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Space between the image and name */
+}
+
+.pet-info img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%; /* Make the pet thumbnail a circle */
+  object-fit: cover;
+  border: 2px solid #fff;
+}
+
+.pet-info span {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #2c3e50;
+}
+

@@ -13,7 +13,6 @@ const ShelterInbox = () => {
                     headers: { 'x-auth-token': localStorage.getItem('token') }
                 };
                 const res = await axios.get('/api/messages/inbox', config);
-                console.log('API Response Data:', res.data); // Keep this for debugging
                 setMessages(res.data);
             } catch (err) {
                 console.error("Failed to fetch messages", err);
@@ -41,7 +40,21 @@ const ShelterInbox = () => {
                                 <span>{new Date(msg.created_at).toLocaleString()}</span>
                             </div>
                             
-                            {/* NEW: Section for sender's contact details */}
+                            {/* --- THIS IS THE NEW SECTION THAT DISPLAYS THE PET --- */}
+                            {/* It will only display if the message is linked to a pet */}
+                            {msg.pet_name && (
+                                <div className="pet-inquiry-details">
+                                    <h4>Inquiry For:</h4>
+                                    <div className="pet-info">
+                                        <img 
+                                            src={msg.pet_image_url || 'https://placehold.co/60x60/EEE/31343C?text=Pet'} 
+                                            alt={msg.pet_name} 
+                                        />
+                                        <span>{msg.pet_name}</span>
+                                    </div>
+                                </div>
+                            )}
+
                             <div className="sender-details">
                                 <h4>Sender Information</h4>
                                 <p><strong>Name:</strong> {msg.sender_name}</p>

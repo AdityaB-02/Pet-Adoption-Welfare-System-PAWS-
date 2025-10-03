@@ -14,6 +14,7 @@ app.use(express.json());
 app.use('/api/pets', require('./routes/pets'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/shelters', require('./routes/shelters'));
+app.use('/api/messages', require('./routes/messages'));
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
