@@ -1,17 +1,27 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../config/db'); // Adjust path if needed
+const petController = require('../controllers/petController'); // 1. Import the controller
 const auth = require('../middleware/authMiddleware');
 
-// Define the endpoint: GET /api/pets
-router.get('/', async (req, res) => {
-  try {
-    const [rows] = await db.query('SELECT * FROM pets WHERE adoption_status = "Available"');
-    res.json(rows);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Server error');
-  }
-});
+// --- Public Routes ---
+
+// GET all available pets (Updated to use the controller)
+router.get('/', petController.getAllPets);
+
+// GET a single pet by ID (This is the new line)
+router.get('/:id', petController.getPetById);
+
+
+// --- Protected Routes for Shelters ---
+
+// POST (add) a new pet
+router.post('/', auth, petController.addPet);
+
+// PUT (update) a pet
+router.put('/:id', auth, petController.updatePet);
+
+// DELETE a pet
+router.delete('/:id', auth, petController.deletePet);
+
 
 module.exports = router;

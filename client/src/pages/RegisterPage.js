@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'; // Import Link for navigation
-import './RegisterPage.css'; // We'll create this CSS file
+import './css/RegisterPage.css'; // We'll create this CSS file
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({

@@ -90,3 +90,16 @@ exports.deletePet = async (req, res) => {
     res.status(500).send('Server Error');
   }
 };
+
+exports.getPetById = async (req, res) => {
+  try {
+    const [pets] = await db.query('SELECT * FROM pets WHERE pet_id = ?', [req.params.id]);
+    if (pets.length === 0) {
+      return res.status(404).json({ msg: 'Pet not found' });
+    }
+    res.json(pets[0]);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+};

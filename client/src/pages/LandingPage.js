@@ -1,7 +1,7 @@
 // In client/src/pages/LandingPage.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './LandingPage.css'; // We'll create this for styling
+import './css/LandingPage.css'; // We'll create this for styling
 
 const LandingPage = () => {
   return (

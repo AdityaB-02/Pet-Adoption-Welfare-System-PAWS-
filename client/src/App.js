@@ -9,6 +9,8 @@ import ShelterDashboard from './pages/ShelterDashboard';
 import ShelterPrivateRoute from './components/ShelterPrivateRoute';
 import Navbar from './components/Navbar';
 import LandingPage from './pages/LandingPage';
+import AddPetPage from './pages/AddPetPage';
+import EditPetPage from './pages/EditPetPage';
 
 function App() {
   return (
@@ -26,7 +28,6 @@ function App() {
           {/* Shelters Routes */}
           <Route path="/shelter/register" element={<ShelterRegisterPage />} />
           <Route path="/shelter/login" element={<ShelterLoginPage />} />
-          {/* Add a route for the dashboard later */}
           <Route 
             path="/shelter/dashboard" 
             element={
@@ -34,6 +35,14 @@ function App() {
                 <ShelterDashboard />
               </ShelterPrivateRoute>
             } />
+             <Route 
+            path="/shelter/add-pet" 
+            element={ <ShelterPrivateRoute><AddPetPage /></ShelterPrivateRoute> } 
+          />
+           <Route 
+            path="/shelter/edit-pet/:id" 
+            element={ <ShelterPrivateRoute><EditPetPage /></ShelterPrivateRoute> } 
+          />
           {/* You can add routes for other pages here later */}
           {/* <Route path="/about" element={<AboutPage />} /> */}
         </Routes>

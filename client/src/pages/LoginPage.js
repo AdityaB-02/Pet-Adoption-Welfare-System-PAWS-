@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './LoginPage.css';
+import './css/LoginPage.css';
 import { Link, useNavigate } from 'react-router-dom'; // We will create this file for styling
 
 const LoginPage = () => {
