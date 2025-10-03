@@ -20,7 +20,7 @@ function App() {
           {/* This is the correct syntax for v6 */}
            <Route path="/" element={<LandingPage />} /> 
           <Route path="/pets" element={<HomePage />} />
-         
+
           {/* User Routes */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
@@ -38,10 +38,6 @@ function App() {
              <Route 
             path="/shelter/add-pet" 
             element={ <ShelterPrivateRoute><AddPetPage /></ShelterPrivateRoute> } 
-          />
-           <Route 
-            path="/shelter/edit-pet/:id" 
-            element={ <ShelterPrivateRoute><EditPetPage /></ShelterPrivateRoute> } 
           />
           {/* You can add routes for other pages here later */}
           {/* <Route path="/about" element={<AboutPage />} /> */}

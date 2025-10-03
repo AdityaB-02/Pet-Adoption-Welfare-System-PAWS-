@@ -4,7 +4,38 @@ const db = require('../config/db');
 // @route   GET /api/pets
 exports.getAllPets = async (req, res) => {
   try {
-    const [pets] = await db.query('SELECT * FROM pets WHERE adoption_status = "Available"');
+    const { species, breed, min_age, max_age, gender, search } = req.query; // Get query parameters
+    let query = 'SELECT * FROM pets WHERE adoption_status = "Available"';
+    const params = [];
+
+    // Add filters based on query parameters
+    if (species) {
+      query += ' AND species = ?';
+      params.push(species);
+    }
+    if (breed) {
+      query += ' AND breed LIKE ?'; // Use LIKE for partial matches
+      params.push(`%${breed}%`);
+    }
+    if (min_age) {
+      query += ' AND age >= ?';
+      params.push(parseInt(min_age));
+    }
+    if (max_age) {
+      query += ' AND age <= ?';
+      params.push(parseInt(max_age));
+    }
+    if (gender) {
+      query += ' AND gender = ?';
+      params.push(gender);
+    }
+    if (search) {
+      // Search across name, species, breed, and description
+      query += ' AND (name LIKE ? OR species LIKE ? OR breed LIKE ? OR description LIKE ?)';
+      params.push(`%${search}%`, `%${search}%`, `%${search}%`, `%${search}%`);
+    }
+
+    const [pets] = await db.query(query, params);
     res.json(pets);
   } catch (err) {
     console.error(err.message);
@@ -93,7 +124,14 @@ exports.deletePet = async (req, res) => {
 
 exports.getPetById = async (req, res) => {
   try {
-    const [pets] = await db.query('SELECT * FROM pets WHERE pet_id = ?', [req.params.id]);
+    const sqlQuery = `
+      SELECT p.*, s.shelter_name, s.address as shelter_address, s.email as shelter_email
+      FROM pets p
+      JOIN shelters s ON p.shelter_id = s.shelter_id
+      WHERE p.pet_id = ?
+    `;
+    const [pets] = await db.query(sqlQuery, [req.params.id]);
+    
     if (pets.length === 0) {
       return res.status(404).json({ msg: 'Pet not found' });
     }
