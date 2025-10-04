@@ -115,3 +115,37 @@ exports.getShelterPets = async (req, res) => {
     res.status(500).send('Server Error');
   }
 };
+
+exports.getShelterProfile = async (req, res) => {
+  try {
+    // req.shelter.id comes from the auth middleware
+    const [shelters] = await db.query(
+      'SELECT shelter_id, shelter_name, email, address, capacity FROM shelters WHERE shelter_id = ?',
+      [req.shelter.id]
+    );
+
+    if (shelters.length === 0) {
+      return res.status(404).json({ msg: 'Shelter not found' });
+    }
+    res.json(shelters[0]);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+};
+
+exports.updateShelterProfile = async (req, res) => {
+  const { shelter_name, address, capacity } = req.body;
+  const shelterId = req.shelter.id;
+
+  try {
+    const updatedFields = { shelter_name, address, capacity };
+    
+    await db.query('UPDATE shelters SET ? WHERE shelter_id = ?', [updatedFields, shelterId]);
+
+    res.json({ msg: 'Profile updated successfully' });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+};

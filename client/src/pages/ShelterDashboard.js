@@ -14,9 +14,7 @@ const ShelterDashboard = () => {
         <h3>Shelter Menu</h3>
         <ul>
           {/* We'll add an "Add Pet" link here for convenience */}
-          <li>
-             <Link to="/shelter/add-pet" className="add-pet-button-sidebar">Add New Pet</Link>
-          </li>
+          
           <li className={isActive('/shelter/dashboard') ? 'active' : ''}>
             <Link to="/shelter/dashboard">My Pets</Link>
           </li>

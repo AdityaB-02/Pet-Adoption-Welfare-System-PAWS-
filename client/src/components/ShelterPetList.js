@@ -47,6 +47,10 @@ const ShelterPetList = () => {
 
   return (
     <div>
+      <div className="dashboard-header">
+        <h1>My Pet Listings</h1>
+        <Link to="/shelter/add-pet" className="add-pet-button">Add New Pet</Link>
+      </div>
       {pets.length === 0 ? (
         <p>You have no pets listed yet. Add one to get started!</p>
       ) : (

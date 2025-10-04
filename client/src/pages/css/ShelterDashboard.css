@@ -118,3 +118,75 @@
 .pet-card-actions button:hover {
   background-color: #e9ecef;
 }
+.shelter-dashboard {
+  display: flex;
+  height: calc(100vh - 60px); /* Assumes a 60px tall main navbar */
+}
+
+/* --- Aesthetic Sidebar --- */
+.dashboard-sidebar {
+  width: 240px;
+  background-color: #f8f9fa;
+  border-right: 1px solid #e9ecef;
+  padding: 25px 0;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.dashboard-sidebar h3 {
+  padding: 0 25px;
+  font-size: 1.1rem;
+  color: #6c757d;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.dashboard-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dashboard-sidebar ul li a {
+  display: block;
+  padding: 15px 25px;
+  text-decoration: none;
+  color: #495057;
+  font-weight: 500;
+  border-left: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.dashboard-sidebar ul li a:hover {
+  background-color: #e9ecef;
+  color: #007bff;
+}
+
+.dashboard-sidebar ul li.active a {
+  background-color: #e7f3ff;
+  color: #007bff;
+  border-left-color: #007bff;
+}
+
+
+/* --- Main Content Area --- */
+.dashboard-content {
+  flex-grow: 1;
+  padding: 30px;
+  overflow-y: auto;
+  background-color: #fff;
+}
+
+/* Header inside the content area */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+}

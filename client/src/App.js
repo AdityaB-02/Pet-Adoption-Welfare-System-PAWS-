@@ -10,9 +10,9 @@ import ShelterPrivateRoute from './components/ShelterPrivateRoute';
 import LandingPage from './pages/LandingPage';
 import AddPetPage from './pages/AddPetPage';
 import EditPetPage from './pages/EditPetPage';
+import ShelterPetList from './components/ShelterPetList'
 
 // Import the components that will be nested in the dashboard
-import ShelterPetList from './components/ShelterPetList'; 
 import ShelterInbox from './pages/ShelterInbox'; // Make sure you've created this file
 import ShelterProfile from './components/ShelterProfile';
 
