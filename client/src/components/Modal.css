@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,8 +16,10 @@
   padding: 30px;
   border-radius: 8px;
   position: relative;
-  width: 90%;
-  max-width: 800px;
+  
+  /* --- CHANGE THIS VALUE --- */
+  max-width: 900px; /* Was 800px, now it's wider */
+
   max-height: 90vh;
   overflow-y: auto;
 }
@@ -28,7 +30,11 @@
   right: 15px;
   background: none;
   border: none;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   cursor: pointer;
   color: #888;
+}
+
+.modal-close-button:hover {
+  color: #333;
 }

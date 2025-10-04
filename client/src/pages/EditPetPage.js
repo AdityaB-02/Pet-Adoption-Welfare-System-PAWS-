@@ -20,12 +20,15 @@ const EditPetPage = () => {
   // Fetch the pet's current data when the component loads
   useEffect(() => {
     const fetchPetData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5000/api/pets/${id}`);
-        setFormData(response.data); // Pre-fill the form with existing data
+      if (id) {
+        try {
+          const response = await axios.get(`http://localhost:5000/api/pets/${id}`);
+          //console.log("Data received from API:", response.data);
+          setFormData(response.data); // Pre-fill the form with existing data
       } catch (error) {
         console.error("Error fetching pet data:", error);
       }
+    }
     };
     fetchPetData();
   }, [id]);

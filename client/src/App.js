@@ -54,7 +54,7 @@ function App() {
             element={ <ShelterPrivateRoute><AddPetPage /></ShelterPrivateRoute> } 
           />
           <Route 
-            path="/shelter/edit-pet/:petId" 
+            path="/shelter/edit-pet/:id"
             element={ <ShelterPrivateRoute><EditPetPage /></ShelterPrivateRoute> } 
           />
         </Routes>

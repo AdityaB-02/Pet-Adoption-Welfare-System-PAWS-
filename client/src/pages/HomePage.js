@@ -118,41 +118,49 @@ const HomePage = () => {
       )}
 
       {/* Details Modal */}
-      <Modal isOpen={isDetailsModalOpen} onClose={closeDetailsModal}>
-        {selectedPet && (
-          <div className="pet-details-modal-content">
-            <img 
-              className="pet-details-image"
-              src={selectedPet.image_url || 'https://placehold.co/600x400/EEE/31343C?text=Pet+Image'} 
-              alt={selectedPet.name} 
-            />
-            <div className="pet-info-section">
-              <span className={`status-tag status-${selectedPet.adoption_status?.toLowerCase()}`}>
-                {selectedPet.adoption_status}
-              </span>
-              <h1>{selectedPet.name}</h1>
-              <p className="breed-info">{selectedPet.breed} ({selectedPet.species})</p>
-              
-              <div className="details-grid">
-                <div><strong>Age:</strong> {selectedPet.age} years</div>
-                <div><strong>Gender:</strong> {selectedPet.gender}</div>
-              </div>
 
-              <h3>About {selectedPet.name}</h3>
-              <p className="pet-description-full">{selectedPet.description}</p>
-              
-              <div className="shelter-info">
-                <h3>Shelter Information</h3>
-                <p><strong>Name:</strong> {selectedPet.shelter_name}</p>
-                <p><strong>Address:</strong> {selectedPet.shelter_address}</p>
-                <p><strong>Contact:</strong> <a href={`mailto:${selectedPet.shelter_email}`}>{selectedPet.shelter_email}</a></p>
-              </div>
-              
-              <button className="adopt-button" onClick={handleAdoptClick}>Adopt Me!</button>
-            </div>
+<Modal isOpen={isDetailsModalOpen} onClose={closeDetailsModal}>
+  {selectedPet && (
+    <div className="pet-details-modal-content">
+      
+      {/* --- LEFT COLUMN --- */}
+      <div className="modal-left-column">
+        <img 
+          src={selectedPet.image_url || 'https://via.placeholder.com/600x400'} 
+          alt={selectedPet.name}
+          className="pet-details-image-landscape"
+        />
+        <div className="pet-primary-info">
+          <span className={`status-tag status-${selectedPet.adoption_status.toLowerCase()}`}>
+            {selectedPet.adoption_status}
+          </span>
+          <h1>{selectedPet.name}</h1>
+          <p className="breed-info">{selectedPet.breed} ({selectedPet.species})</p>
+          <div className="details-grid">
+            <div><strong>AGE</strong>{selectedPet.age} years</div>
+            <div><strong>GENDER</strong>{selectedPet.gender}</div>
           </div>
-        )}
-      </Modal>
+          <h3>About {selectedPet.name}</h3>
+          <p className="pet-description-full">{selectedPet.description}</p>
+        </div>
+      </div>
+
+      {/* --- RIGHT COLUMN --- */}
+      <div className="modal-right-column">
+        <div className="shelter-info">
+          <h3>Shelter Information</h3>
+          <p><strong>Name:</strong> {selectedPet.shelter_name}</p>
+          <p><strong>Address:</strong> {selectedPet.shelter_address}</p>
+          <p><strong>Contact:</strong> <a href={`mailto:${selectedPet.shelter_email}`}>{selectedPet.shelter_email}</a></p>
+        </div>
+        <button className="adopt-button" onClick={handleAdoptClick}>
+          Adopt Me!
+        </button>
+      </div>
+
+    </div>
+  )}
+</Modal>
 
       {/* Contact Shelter Modal */}
       {isContactModalOpen && selectedPet && (

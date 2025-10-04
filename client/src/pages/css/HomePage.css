@@ -153,56 +153,59 @@
 }
 
 
-/* --- UPDATED STYLES for a more organized pet details modal --- */
+/* --- AESTHETIC TWO-COLUMN MODAL --- */
+
 .pet-details-modal-content {
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  text-align: left;
+  flex-direction: column; /* Mobile-first: stack columns */
+  gap: 20px;
+  max-width: 900px;
 }
+.modal-content {
+ background: white;
+  padding: 30px;
+  border-radius: 8px;
+  position: relative;
+  
+  max-width: 900px;
 
-@media (min-width: 768px) {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+/* On larger screens, switch to side-by-side layout */
+@media (min-width: 820px) {
   .pet-details-modal-content {
     flex-direction: row;
-    max-height: 85vh;
+    align-items: flex-start;
   }
 }
 
-.pet-details-image {
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  object-fit: cover;
-  border-radius: 12px;
-  align-self: center;
-  flex-shrink: 0;
-}
-
-@media (min-width: 768px) {
-  .pet-details-image {
-    width: 45%;
-    align-self: flex-start;
-  }
-}
-
-.pet-info-section {
-  flex: 1;
+/* --- Left Column Styling --- */
+.modal-left-column {
+  flex: 0 0 60%; /* Left column takes ~60% of the width */
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-  padding-right: 10px; /* Add some padding for the scrollbar */
+  gap: 20px;
 }
 
-.pet-info-section h1 {
+/* --- Element Styling --- */
+
+.pet-details-image-landscape {
+  width: 100%;
+  aspect-ratio: 16 / 10; /* Creates a landscape shape */
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.pet-primary-info h1 {
   font-size: 2.5rem;
   margin-top: 0;
   margin-bottom: 0.25rem;
-  color: #2c3e50;
 }
 
-.pet-info-section .breed-info {
+.pet-primary-info .breed-info {
   font-size: 1.1rem;
-  color: #7f8c8d;
+  color: #777;
   margin-top: 0;
   margin-bottom: 1.5rem;
   font-style: italic;
@@ -210,62 +213,49 @@
 
 .details-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  background-color: #f8f9fa;
   padding: 1rem;
   border-radius: 8px;
+  background-color: #f8f9fa;
   margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-.details-grid div {
-  font-size: 1rem;
-  color: #555;
 }
 
 .details-grid strong {
   display: block;
-  color: #333;
-  font-size: 0.9rem;
-  margin-bottom: 0.25rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  color: #6c757d;
 }
 
-.pet-info-section h3 {
+.pet-primary-info h3 {
   margin-top: 1rem;
   margin-bottom: 0.5rem;
-  color: #34495e;
-  border-bottom: 2px solid #ecf0f1;
+  border-bottom: 2px solid #eee;
   padding-bottom: 0.5rem;
 }
 
 .pet-description-full {
-  line-height: 1.7;
-  color: #555;
+  line-height: 1.6;
 }
 
 .shelter-info {
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+.modal-right-column{
   margin-top: 1.5rem;
+  margin-left: 30px;
   padding: 1rem;
-  background-color: #f8f9fa;
+  background-color: #f0f8ff; /* A very light blue background for shelter info */
   border-radius: 8px;
   border-top: 3px solid #007bff;
 }
 
-.shelter-info p {
-  margin: 0.5rem 0;
-}
-
-.shelter-info a {
-  color: #007bff;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.shelter-info a:hover {
-  text-decoration: underline;
+.shelter-info h3 {
+  margin-top: 0;
 }
 
 .adopt-button {
@@ -275,9 +265,9 @@
   padding: 1rem 1.5rem;
   border-radius: 50px;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1.1rem; /* Slightly smaller button text */
   font-weight: bold;
-  margin-top: 1.5rem;
+  margin-top: auto; /* Pushes button to the bottom of the scrollable area */
   width: 100%;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
@@ -295,32 +285,16 @@
   font-weight: bold;
   color: white;
   margin-bottom: 1rem;
-  font-size: 0.9rem;
+  font-size: 0.85rem; /* Smaller status tag */
 }
 
 .status-available { background-color: #28a745; }
 .status-pending { background-color: #ffc107; color: #333; }
 .status-adopted { background-color: #6c757d; }
 
-/* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
-  .modal-content {
-    padding: 20px;
-    max-width: 95%;
-  }
-
-  .pet-details-modal-content {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .pet-details-modal-content img {
-    max-width: 100%;
-    height: 250px;
-  }
-
-  .pet-info-section h1 {
-    font-size: 2rem;
+/* Making it responsive */
+@media (max-width: 819px) {
+  .modal-right-column {
+    height: auto;
   }
 }
-

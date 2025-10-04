@@ -55,7 +55,9 @@ const ShelterPetList = () => {
         <p>You have no pets listed yet. Add one to get started!</p>
       ) : (
         <div className="pet-grid-shelter">
-          {pets.map(pet => (
+          {pets.map(pet => {
+          //console.log("Inspecting pet object:", pet);
+          return (
             <div key={pet.pet_id} className="pet-card-shelter">
               <img src={pet.image_url || 'https://via.placeholder.com/300'} alt={pet.name} />
               <div className="pet-card-content">
@@ -74,7 +76,7 @@ const ShelterPetList = () => {
                 </div>
               </div>
             </div>
-          ))}
+          )})}
         </div>
       )}
     </div>
