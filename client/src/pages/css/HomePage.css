@@ -99,7 +99,7 @@ body {
   display: flex;         /* This is your change */
   flex-wrap: wrap;       /* Add this to allow cards to wrap */
   gap: 30px;             /* This still works and adds space */
-  justify-content: left; /* Optional: This will center the cards in the container */
+  justify-content: left; 
 } 
 
 .pet-card {
