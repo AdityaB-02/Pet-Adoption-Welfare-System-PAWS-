@@ -3,7 +3,6 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const PORT = 5000;
-
 require('dotenv').config();
 
 // Middleware
@@ -15,6 +14,7 @@ app.use('/api/pets', require('./routes/pets'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/shelters', require('./routes/shelters'));
 app.use('/api/messages', require('./routes/messages'));
+app.use('/api/app', require('./routes/app'));
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
