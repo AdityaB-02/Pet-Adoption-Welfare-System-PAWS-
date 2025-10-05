@@ -74,7 +74,6 @@ const HomePage = () => {
         <h1>Find Your New Best Friend</h1>
         <p>Browse pets available for adoption from shelters near you.</p>
       </header>
-
       <div className="filter-search-section">
         <input
           type="text"
@@ -93,20 +92,22 @@ const HomePage = () => {
            <button onClick={handleClearFilters} className="clear-filters-button">Clear</button>
          </div>
       </div>
-
       {loading ? (
         <p className="loading-message">Finding amazing pets...</p>
       ) : pets.length === 0 ? (
         <p className="no-pets-message">No pets found. Try adjusting your filters!</p>
       ) : (
         <div className="pet-grid">
-          {pets.map(pet => (
+          {pets.filter(pet => pet && pet.pet_id).map(pet => {
+            console.log("Rendering pet:", pet);
+            return (
             <PetCard 
               key={pet.pet_id} 
               pet={pet} 
               onViewDetailsClick={handleViewDetails} 
             />
-          ))}
+          );
+          })}
         </div>
       )}
 

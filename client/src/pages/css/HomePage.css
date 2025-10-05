@@ -5,9 +5,8 @@ body {
 }
 
 .homepage-container {
-    padding: 30px 40px;
-    max-width: 1300px;
-    margin: 0 auto;
+    padding: 20px 40px;
+    max-width: 1800px;
 }
 
 .homepage-header {
@@ -87,15 +86,24 @@ body {
 /* === Pet Grid & Cards === */
 /* === Pet Grid & Cards (Corrected to fix alignment) === */
 
-.pet-grid {
+/* .pet-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 35px;
-  /* This is the most important rule: forces all cards in a row to be the same height. */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  /* This is the most important rule: forces all cards in a row to be the same height.
   align-items: stretch;
-}
+  width: 100%;
+}  */
+
+.pet-grid {
+  display: flex;         /* This is your change */
+  flex-wrap: wrap;       /* Add this to allow cards to wrap */
+  gap: 30px;             /* This still works and adds space */
+  justify-content: left; /* Optional: This will center the cards in the container */
+} 
 
 .pet-card {
+    flex: 0 1 300px;
   background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
