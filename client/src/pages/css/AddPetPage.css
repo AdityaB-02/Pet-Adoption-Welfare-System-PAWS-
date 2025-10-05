@@ -1,58 +1,147 @@
+/* === Global & Page Background === */
+body {
+    background-color: #f4f7f6;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #333;
+}
+
+/* === Main Form Container === */
 .form-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 0;
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    overflow: hidden; /* Ensures child elements conform to border-radius */
+    display: flex; /* Using flexbox for a two-column layout */
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+}
+
+/* === Two-Column Layout Setup === */
+.pet-form, .vaccine-section {
+    padding: 30px 40px;
+    box-sizing: border-box;
 }
 
 .pet-form {
-  padding: 40px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
-  width: 100%;
-  max-width: 500px; /* Slightly wider for the pet form */
-  box-sizing: border-box;
+    flex: 2; /* Pet form takes up more space */
+    min-width: 400px;
 }
 
-.pet-form h2 {
-  text-align: center;
-  margin-bottom: 24px;
-  color: #333;
+.vaccine-section {
+    flex: 1; /* Vaccine section takes less space */
+    min-width: 300px;
+    background-color: #f9fafb; /* Slightly different background to separate */
+    border-left: 1px solid #eef2f5;
 }
 
+/* --- Form Headers --- */
+h2, h3 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* --- Input & Label Styling --- */
 .form-group {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .form-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: #555;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+    font-size: 0.9rem;
 }
 
 .form-group input,
 .form-group textarea,
-.form-group select { /* Added select for the gender dropdown */
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  font-family: inherit; /* Ensures consistent font */
-  font-size: 1rem;
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #333;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.pet-form button {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 4px;
-  background-color: #007bff; /* Primary blue color */
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #5e95e1; /* A nice blue for focus */
+    box-shadow: 0 0 0 3px rgba(94, 149, 225, 0.15); /* Soft glow effect */
+}
+
+/* --- Checkbox Styling --- */
+.form-group-checkbox {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-radius: 6px;
+    background-color: #f9fafb;
+}
+
+.form-group-checkbox label {
+    margin: 0 0 0 12px;
+}
+
+.form-group-checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: #5e95e1;
+}
+
+/* --- Button Styling --- */
+button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #5e95e1;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #4a7ac0; /* Darker shade on hover */
+}
+
+/* --- Vaccine Section List Styling --- */
+.vaccine-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.vaccine-list li {
+    background-color: #eef2f5;
+    color: #34495e;
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.vaccine-form {
+    margin-top: 25px;
+}
+
+/* --- Responsive Design for smaller screens --- */
+@media (max-width: 850px) {
+    .form-container {
+        flex-direction: column; /* Stack the columns vertically */
+    }
+    .vaccine-section {
+        border-left: none;
+        border-top: 2px solid #eef2f5;
+    }
 }

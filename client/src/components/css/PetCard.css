@@ -1,56 +1,66 @@
 .pet-card {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
   overflow: hidden;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  /* 1. Make the card a flex container, arranging its children vertically */
   display: flex;
   flex-direction: column;
 }
 
 .pet-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 .pet-card img {
   width: 100%;
-  height: 200px;
+  height: 220px; /* A slightly shorter, consistent image height */
   object-fit: cover;
 }
 
-.pet-card-info {
-  padding: 1rem;
+.pet-card-content {
+  padding: 20px;
+  
+  /* 2. This is the key: make this section a flex container that grows */
   flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
 
-.pet-card-info h3 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-  color: #333;
+.pet-card-content h3 {
+  margin: 0 0 8px;
+  color: #2c3e50;
+  font-size: 1.5rem;
 }
 
-.pet-card-info p {
-  margin: 0.25rem 0;
-  color: #666;
+.pet-card-content p {
+  margin: 0 0 15px; /* Removed the flex-grow from here */
+  color: #5a6d7d;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
-.adopt-me-button {
-  background-color: #007bff;
-  color: white;
+.view-details-button {
+  display: block;
+  width: 100%;
+  padding: 12px;
   border: none;
-  padding: 0.75rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
+  border-radius: 8px;
+  background-color: #5e95e1;
+  color: white;
   font-size: 1rem;
-  font-weight: bold;
-  margin-top: auto; /* Pushes the button to the bottom */
-  align-self: center;
-  width: 80%;
-  transition: background-color 0.2s;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  /* 3. This pushes the button to the bottom of the card */
+  margin-top: auto; 
 }
 
-.adopt-me-button:hover {
-  background-color: #0056b3;
+.view-details-button:hover {
+  background-color: #4a7ac0;
 }

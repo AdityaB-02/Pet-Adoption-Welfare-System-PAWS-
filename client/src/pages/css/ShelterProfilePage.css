@@ -1,0 +1,117 @@
+.profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* --- UPDATED HEADER STYLES --- */
+.profile-header {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    margin-bottom: 40px;
+}
+
+.profile-header h1 {
+    margin: 0 0 15px;
+    font-size: 2.8rem;
+    color: #2c3e50;
+}
+
+.shelter-contact-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Allows wrapping on small screens */
+    gap: 15px;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.shelter-contact-info .separator {
+    color: #ccc;
+}
+
+.shelter-contact-info a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.shelter-contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* --- GENERAL SECTION STYLES --- */
+.profile-section {
+    margin-bottom: 40px;
+}
+
+.profile-section h2 {
+    font-size: 2rem;
+    color: #343a40;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+}
+
+/* --- PET GRID STYLES --- */
+.profile-pet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.profile-pet-card {
+    text-decoration: none;
+    color: inherit;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.profile-pet-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.profile-pet-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.profile-pet-card h3 {
+    margin: 15px;
+    font-size: 1.4rem;
+}
+.profile-pet-card p {
+    margin: 0 15px 15px;
+    color: #666;
+}
+
+/* --- DETAILS LIST (FOR ACTIVITIES) --- */
+.details-list {
+    list-style: none;
+    padding: 0;
+}
+.details-list li {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border-left: 4px solid #007bff;
+}
+.details-list li strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+.details-list li p {
+    margin: 0;
+    color: #555;
+}
