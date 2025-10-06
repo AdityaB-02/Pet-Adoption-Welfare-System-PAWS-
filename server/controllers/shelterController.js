@@ -145,6 +145,26 @@ const addShelterActivity = async (req, res) => {
   }
 };
 
+const addShelterDonation = async (req, res) => {
+  try {
+    const { donor_name, amount, donation_type, donation_date, notes } = req.body;
+    const shelter_id = req.shelter.id;
+
+    if (!donation_type || !donation_date) {
+      return res.status(400).json({ msg: 'Donation type and date are required.' });
+    }
+
+    const newDonation = { shelter_id, donor_name, amount, donation_type, donation_date, notes };
+
+    await db.query('INSERT INTO donations SET ?', newDonation);
+    res.status(201).json({ msg: 'Donation recorded successfully' });
+
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+};
+
 module.exports = {
     registerShelter,
     loginShelter,
@@ -154,5 +174,6 @@ module.exports = {
     getShelterDonations,
     getShelterActivities,
     getShelterProfileById,
-    addShelterActivity
+    addShelterActivity,
+    addShelterDonation
 };

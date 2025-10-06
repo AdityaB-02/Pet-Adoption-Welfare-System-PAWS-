@@ -243,3 +243,25 @@
     color: #007bff;
     font-weight: 700;
 }
+
+.donations-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.donations-table th,
+.donations-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.donations-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+.donations-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}

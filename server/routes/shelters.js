@@ -26,6 +26,7 @@ router.get('/pets', auth, shelterController.getShelterPets);
 
 // GET all donations for the logged-in shelter
 router.get('/donations', auth, shelterController.getShelterDonations);
+router.post('/donations', auth, shelterController.addShelterDonation);
 
 // GET all activities for the logged-in shelter
 router.get('/activities', auth, shelterController.getShelterActivities);
