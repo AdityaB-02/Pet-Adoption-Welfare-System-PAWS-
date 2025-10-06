@@ -26,21 +26,30 @@ const ActivitiesList = () => {
 
     if (loading) return <p>Loading activities...</p>;
 
-    return (
-        // Add this wrapper div
-        <div className="content-card">
-            <div className="dashboard-header">
-                <h1>Local Activities Conducted</h1>
+     return (
+    <div className="content-card">
+      <div className="dashboard-header">
+        <h1>Local Activities Conducted</h1>
+      </div>
+      
+      {activities.length > 0 ? (
+        <div className="activity-list">
+          {activities.map(activity => (
+            <div key={activity.activity_id} className="activity-card">
+              <h3>{activity.title}</h3>
+              <div className="activity-details">
+                <span><strong>Date:</strong> {new Date(activity.activity_date).toLocaleDateString()}</span>
+                <span><strong>Location:</strong> {activity.location}</span>
+              </div>
+              <p className="activity-description">{activity.description}</p>
             </div>
-            {activities.length > 0 ? (
-                <div className="activity-list">
-                    {/* ... list of activity cards ... */}
-                </div>
-            ) : (
-                <p>No activities have been recorded yet.</p>
-            )}
+          ))}
         </div>
-    );
+      ) : (
+        <p>No activities have been recorded yet.</p>
+      )}
+    </div>
+  );
 };
 
 export default ActivitiesList;

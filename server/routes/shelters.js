@@ -1,50 +1,46 @@
 const express = require('express');
 const router = express.Router();
 
-// 1. Use a single, clean import for the controller and middleware
 const shelterController = require('../controllers/shelterController');
-const auth = require('../middleware/authMiddleware'); // This is your correct auth middleware
+const auth = require('../middleware/authMiddleware');
 
 // ==========================================================
-// --- Public Routes (Accessible by anyone) ---
+// --- Public Routes ---
 // ==========================================================
 
-// Register a new shelter
-// @route   POST /api/shelters/register
 router.post('/register', shelterController.registerShelter);
-
-// Login a shelter
-// @route   POST /api/shelters/login
 router.post('/login', shelterController.loginShelter);
 
-// Get a shelter's public profile page by its ID
-// @route   GET /api/shelters/:id
-router.get('/:id', shelterController.getShelterProfileById);
-
 
 // ==========================================================
-// --- Private Shelter Routes (Require a valid shelter token) ---
+// --- Private Shelter Routes (Order is important here!) ---
 // ==========================================================
 
-// Get the logged-in shelter's own private profile details
-// @route   GET /api/shelters/me
+// Specific static routes MUST come before general dynamic routes.
+
+// GET the logged-in shelter's own private profile details
 router.get('/me', auth, shelterController.getShelterProfile);
 
-// Update the logged-in shelter's own profile
-// @route   PUT /api/shelters/me
-router.put('/me', auth, shelterController.updateShelterProfile);
-
-// Get all pets for the logged-in shelter
-// @route   GET /api/shelters/pets
+// GET all pets for the logged-in shelter
 router.get('/pets', auth, shelterController.getShelterPets);
 
-// Get all donations for the logged-in shelter
-// @route   GET /api/shelters/donations
+// GET all donations for the logged-in shelter
 router.get('/donations', auth, shelterController.getShelterDonations);
 
-// Get all activities for the logged-in shelter
-// @route   GET /api/shelters/activities
+// GET all activities for the logged-in shelter
 router.get('/activities', auth, shelterController.getShelterActivities);
+
+// PUT (Update) the logged-in shelter's own profile
+router.put('/me', auth, shelterController.updateShelterProfile);
+
+
+// ==========================================================
+// --- Dynamic routes MUST be last ---
+// ==========================================================
+
+// GET a shelter's public profile by its ID
+// This is last so it doesn't accidentally catch requests for '/me', '/pets', etc.
+router.get('/:id', shelterController.getShelterProfileById);
 
 
 module.exports = router;

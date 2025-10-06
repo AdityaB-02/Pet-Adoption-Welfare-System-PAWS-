@@ -14,7 +14,6 @@ import ShelterPetList from './components/ShelterPetList';
 import DonationsPage from './pages/DonationsPage';
 import ActivitiesPage from './pages/ActivitiesPage';
 import ShelterProfilePage from './pages/ShelterProfilePage';
-import './App.css';
 import ShelterInbox from './pages/ShelterInbox';
 import ShelterProfile from './components/ShelterProfile';
 

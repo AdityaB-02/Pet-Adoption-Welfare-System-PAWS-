@@ -13,7 +13,7 @@ module.exports = function(req, res, next) {
   // Verify token
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.shelter = decoded.user; // Use req.shelter for shelters
+    req.shelter = decoded.shelter; // Use req.shelter for shelters
     next();
   } catch (err) {
     res.status(401).json({ msg: 'Token is not valid' });

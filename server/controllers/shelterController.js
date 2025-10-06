@@ -51,6 +51,7 @@ const loginShelter = async (req, res) => {
 };
 
 const getShelterPets = async (req, res) => {
+    console.log("--- EXECUTING getShelterPets ---");
     try {
         const [pets] = await db.query('SELECT * FROM pets WHERE shelter_id = ? ORDER BY pet_id DESC', [req.shelter.id]);
         res.json(pets);
@@ -105,6 +106,7 @@ const getShelterActivities = async (req, res) => {
 };
 
 const getShelterProfileById = async (req, res) => {
+    console.log("--- EXECUTING getShelterProfileById ---");
     try {
         const shelterId = req.params.id;
         const [details] = await db.query('SELECT shelter_id, shelter_name, email, address, capacity FROM shelters WHERE shelter_id = ?', [shelterId]);

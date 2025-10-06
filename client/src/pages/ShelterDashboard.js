@@ -1,35 +1,33 @@
 // In client/src/pages/ShelterDashboard.js
 
 import React from 'react';
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import './css/ShelterDashboard.css'; 
 
 const ShelterDashboard = () => {
+    const location = useLocation();
+    const isActive = (path) => location.pathname === path;
     return (
         <div className="shelter-dashboard">
             <nav className="dashboard-sidebar">
                 <h3>Shelter Menu</h3>
-                <div className="sidebar-action">
-                    <Link to="/shelter/add-pet" className="add-pet-button-sidebar">Add New Pet</Link>
-                </div>
-
                 <ul>
                     {/* The sidebar now uses NavLink, which is like Link but can be styled when active */}
-                    <li>
-                        <NavLink to="/shelter/dashboard" end>My Pets</NavLink>
+                     <li className={isActive('/shelter/dashboard') ? 'active' : ''}>
+                        <Link to="/shelter/dashboard">My Pets</Link>
                     </li>
-                    <li>
-                        <NavLink to="/shelter/dashboard/inbox">Inbox</NavLink>
+                    <li className={isActive('/shelter/dashboard/inbox') ? 'active' : ''}>
+                        <Link to="/shelter/dashboard/inbox">Inbox</Link>
                     </li>
-                    <li>
-                        <NavLink to="/shelter/dashboard/profile">Profile</NavLink>
+                    <li className={isActive('/shelter/dashboard/profile') ? 'active' : ''}>
+                        <Link to="/shelter/dashboard/profile">Profile</Link>
                     </li>
                     {/* New links for the pages */}
-                    <li>
-                        <NavLink to="/shelter/dashboard/donations">Donations</NavLink>
+                    <li className ={isActive('/shelter/dashboard/donations') ? 'active' : ''}>
+                        <Link to="/shelter/dashboard/donations">Donations</Link>
                     </li>
-                    <li>
-                        <NavLink to="/shelter/dashboard/activities">Activities</NavLink>
+                    <li className ={isActive('/shelter/dashboard/activities') ? 'active' : ''}>
+                        <Link to="/shelter/dashboard/activities">Activities</Link>
                     </li>
                 </ul>
             </nav>
