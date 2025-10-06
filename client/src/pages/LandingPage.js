@@ -23,7 +23,7 @@ const LandingPage = () => {
     return (
         <div className="landing-container">
             <header className="landing-header">
-                <h1>Welcome to Pet-Adopt</h1>
+                <h1>Welcome to PAWS</h1>
                 <p>Connecting loving homes with pets in need.</p>
             </header>
 

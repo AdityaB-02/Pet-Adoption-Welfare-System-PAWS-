@@ -29,11 +29,7 @@ const ShelterProfilePage = () => {
 
     return (
         <div className="profile-container">
-            <header className="profile-header">
-                <h1>{details.name}</h1>
-                <p>{details.address}</p>
-                <a href={`mailto:${details.email}`} className="contact-button">Contact Us</a>
-            </header>
+            
 
             <section className="profile-section">
                 <h2>Our Adoptable Pets</h2>
@@ -83,6 +79,12 @@ const ShelterProfilePage = () => {
                         <p>Contact the shelter directly to see how you can help.</p>
                     )}
                 </section>
+
+                <section className="profile-header">
+                <h1>{details.name}</h1>
+                <p>{details.address}</p>
+                <a href={`mailto:${details.email}`} className="contact-button">Contact Us</a>
+            </section>
             </div>
         </div>
     );

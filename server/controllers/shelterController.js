@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const registerShelter = async (req, res) => {
     // Note: In your frontend, ensure the form field is 'name', not 'shelter_name'
-    const { name, email, password, address, capacity } = req.body;
+    const { shelter_name, email, password, address, capacity } = req.body;
     try {
         let [shelter] = await db.query('SELECT email FROM shelters WHERE email = ?', [email]);
         if (shelter.length > 0) {
@@ -13,7 +13,7 @@ const registerShelter = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const password_hash = await bcrypt.hash(password, salt);
         // Assuming your table column is 'name'
-        const newShelter = { name, email, password_hash, address, capacity };
+        const newShelter = { shelter_name, email, password_hash, address, capacity };
         const [result] = await db.query('INSERT INTO shelters SET ?', newShelter);
         const shelterId = result.insertId;
         const payload = { shelter: { id: shelterId } };

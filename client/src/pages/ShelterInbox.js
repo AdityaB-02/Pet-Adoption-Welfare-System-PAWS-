@@ -14,6 +14,7 @@ const ShelterInbox = () => {
                 };
                 const res = await axios.get('/api/messages/inbox', config);
                 setMessages(res.data);
+                console.log(res.data);
             } catch (err) {
                 console.error("Failed to fetch messages", err);
             } finally {
@@ -59,7 +60,7 @@ const ShelterInbox = () => {
                                 <h4>Sender Information</h4>
                                 <p><strong>Name:</strong> {msg.sender_name}</p>
                                 <p><strong>Email:</strong> <a href={`mailto:${msg.sender_email}`}>{msg.sender_email}</a></p>
-                                <p><strong>Phone:</strong> {msg.sender_phone || 'Not provided'}</p>
+                                <p><strong>Phone:</strong> {msg.phone_number || 'Not provided'}</p>
                             </div>
 
                             <div className="message-content">

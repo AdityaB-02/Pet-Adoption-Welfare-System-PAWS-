@@ -115,3 +115,19 @@
     margin: 0;
     color: #555;
 }
+/* The container for all your tags */
+.donation-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px; /* This adds 8px of space between each tag */
+}
+
+/* The style for each individual tag */
+.donation-tag {
+  background-color: #e7f3ff; /* Light blue background */
+  color: #007bff; /* Blue text */
+  padding: 5px 12px; /* Vertical and horizontal padding */
+  border-radius: 15px; /* Creates a pill shape */
+  font-size: 0.9rem;
+  font-weight: 500;
+}

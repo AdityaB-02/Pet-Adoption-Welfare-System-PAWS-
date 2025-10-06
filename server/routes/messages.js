@@ -1,14 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../config/db');
-const authMiddleware = require('../middleware/authMiddleware');
 
-// @route   POST api/messages
-// @desc    Send a new message to a shelter
-// @access  Private
-router.post('/', authMiddleware, async (req, res) => {
-    // This route is working correctly
-    const sender_id = req.shelter.id; 
+// Import BOTH middleware files for clarity
+const shelterAuth = require('../middleware/authMiddleware');
+const userAuth = require('../middleware/userAuthMiddleware');
+
+/**
+ * @route   POST api/messages
+ * @desc    A USER sends a message to a shelter
+ * @access  Private (Users Only)
+ */
+router.post('/', userAuth, async (req, res) => { // <-- Uses USER's auth
+    const sender_id = req.user.id; // <-- Gets sender ID from user token
     const { recipient_id, pet_id, content } = req.body;
 
     if (!recipient_id || !content) {
@@ -25,21 +29,21 @@ router.post('/', authMiddleware, async (req, res) => {
     }
 });
 
-// @route   GET api/messages/inbox
-// @desc    Get all messages for the logged-in shelter
-// @access  Private (for shelters)
-router.get('/inbox', authMiddleware, async (req, res) => {
-    const shelter_id = req.shelter.id;
+/**
+ * @route   GET api/messages/inbox
+ * @desc    A SHELTER views their inbox
+ * @access  Private (Shelters Only)
+ */
+router.get('/inbox', shelterAuth, async (req, res) => { // <-- Uses SHELTER's auth
+    const shelter_id = req.shelter.id; // <-- Gets recipient ID from shelter token
 
     try {
-        // --- THIS IS THE CORRECTED SQL QUERY ---
-        // The fix is changing `p.id` back to `p.pet_id` to match your table structure.
         const sql = `
             SELECT 
                 m.*, 
                 u.full_name AS sender_name,
                 u.email AS sender_email,
-                u.phone_number AS sender_phone,
+                u.phone_number as phone_number,
                 p.name AS pet_name,
                 p.image_url AS pet_image_url
             FROM messages m
@@ -57,4 +61,3 @@ router.get('/inbox', authMiddleware, async (req, res) => {
 });
 
 module.exports = router;
-
