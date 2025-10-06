@@ -52,26 +52,33 @@ body {
     box-shadow: 0 0 0 4px rgba(94, 149, 225, 0.1);
 }
 
-.filters-grid {
+/* .filters-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 20px;
-}
+    gap: 10px;
+}*/
 
 .filters-grid select,
 .filters-grid input {
-    width: 100%;
     padding: 12px;
     border: 1px solid #dcdcdc;
     border-radius: 8px;
     background-color: #fff;
     font-size: 1rem;
+} 
+
+.filtera-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
 }
 
 .clear-filters-button {
-    background-color: #6c757d; /* A neutral grey */
+    background-color: #a5a5a5; 
     color: white;
-    padding: 12px;
+    padding: 17px;
+    width: 200px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -80,7 +87,7 @@ body {
 }
 
 .clear-filters-button:hover {
-    background-color: #5a6268;
+    background-color: #ec4040;
 }
 
 /* === Pet Grid & Cards === */

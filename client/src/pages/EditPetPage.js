@@ -118,8 +118,19 @@ const EditPetPage = () => {
                     <label>Pet's Name</label>
                     <input type="text" name="name" value={formData.name} onChange={onChange} required />
                 </div>
-                 {/* ... species, breed, age, gender, etc. ... */}
+                 <div className="form-group">
+                    <label>Species</label>
+                    <input type="text" name="species" value={formData.species} onChange={onChange} required />
+                 </div>
                 <div className="form-group">
+                <div className="form-group">
+                    <label>Breed</label>
+                    <input type="text" name="breed" value={formData.breed} onChange={onChange} />
+                </div>
+                <div className="form-group">
+                    <label>Age (years)</label>
+                    <input type="number" name="age" value={formData.age} onChange={onChange} required />
+                </div>
           <label>Gender</label>
           <select name="gender" value={formData.gender} onChange={onChange}>
             <option value="Male">Male</option>

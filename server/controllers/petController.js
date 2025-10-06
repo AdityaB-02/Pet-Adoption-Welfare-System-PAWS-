@@ -5,7 +5,7 @@ const db = require('../config/db');
 // @access  Public
 const getAllPets = async (req, res) => {
     try {
-        const { species, search } = req.query;
+        const { species,  min_age, max_age, gender, search } = req.query;
         let query = `
             SELECT p.pet_id, p.name, p.species, p.breed, p.image_url, p.description 
             FROM pets p 
@@ -22,6 +22,19 @@ const getAllPets = async (req, res) => {
             const searchTerm = `%${search}%`;
             params.push(searchTerm, searchTerm, searchTerm);
         }
+
+         if (min_age) {
+         query += ' AND age >= ?';
+         params.push(parseInt(min_age));
+        }
+         if (max_age) {
+         query += ' AND age <= ?';
+         params.push(parseInt(max_age));
+        }
+         if (gender && gender.trim() !== '') {
+         query += ' AND gender = ?';
+         params.push(gender);
+        }   
 
         const [pets] = await db.query(query, params);
         res.json(pets);

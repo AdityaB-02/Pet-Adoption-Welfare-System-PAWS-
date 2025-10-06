@@ -84,11 +84,42 @@ const HomePage = () => {
           className="search-input"
         />
          <div className="filters-grid">
-           <select name="species" value={filters.species} onChange={handleFilterChange}>
+          {/* <select name="species" value={filters.species} onChange={handleFilterChange}>
              <option value="">All Species</option>
              <option value="Dog">Dog</option>
              <option value="Cat">Cat</option>
-           </select>
+            <option value="Bird">Parakeet</option>
+            <option value="Rabbit">Rabbit</option>
+           </select> 
+          <input
+            type="text"
+            name="breed"
+            placeholder="Breed"
+            value={filters.breed}
+            onChange={handleFilterChange}
+          /> */}
+
+          <input
+            type="number"
+            name="min_age"
+            placeholder="Min Age"
+            value={filters.min_age}
+            onChange={handleFilterChange}
+          />
+
+          <input
+            type="number"
+            name="max_age"
+            placeholder="Max Age"
+            value={filters.max_age}
+            onChange={handleFilterChange}
+          />
+
+          <select name="gender" value={filters.gender} onChange={handleFilterChange}>
+            <option value="">All Genders</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
            <button onClick={handleClearFilters} className="clear-filters-button">Clear</button>
          </div>
       </div>
