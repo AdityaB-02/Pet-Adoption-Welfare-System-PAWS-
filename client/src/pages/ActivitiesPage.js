@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../pages/css/ShelterDashboard.css';
+import { Link } from 'react-router-dom';
 
 const ActivitiesList = () => {
     // ... (your existing state and useEffect logic) ...
@@ -30,6 +31,7 @@ const ActivitiesList = () => {
     <div className="content-card">
       <div className="dashboard-header">
         <h1>Local Activities Conducted</h1>
+        <Link to="/shelter/add-activity" className="add-pet-button">Add Activity</Link>
       </div>
       
       {activities.length > 0 ? (

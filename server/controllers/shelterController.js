@@ -75,9 +75,9 @@ const getShelterProfile = async (req, res) => {
 };
 
 const updateShelterProfile = async (req, res) => {
-    const { name, address, capacity } = req.body;
+    const { shelter_name, address, capacity } = req.body;
     try {
-        await db.query('UPDATE shelters SET shelter_name = ?, address = ?, capacity = ? WHERE shelter_id = ?', [name, address, capacity, req.shelter.id]);
+        await db.query('UPDATE shelters SET shelter_name = ?, address = ?, capacity = ? WHERE shelter_id = ?', [shelter_name, address, capacity, req.shelter.id]);
         res.json({ msg: 'Profile updated successfully' });
     } catch (err) {
         console.error(err.message);
@@ -106,7 +106,6 @@ const getShelterActivities = async (req, res) => {
 };
 
 const getShelterProfileById = async (req, res) => {
-    console.log("--- EXECUTING getShelterProfileById ---");
     try {
         const shelterId = req.params.id;
         const [details] = await db.query('SELECT shelter_id, shelter_name, email, address, capacity FROM shelters WHERE shelter_id = ?', [shelterId]);
@@ -124,6 +123,28 @@ const getShelterProfileById = async (req, res) => {
     }
 };
 
+const addShelterActivity = async (req, res) => {
+  try {
+    const { title, description, activity_date, location } = req.body;
+    const shelter_id = req.shelter.id; // From auth middleware
+
+    // Simple validation
+    if (!title || !description || !activity_date) {
+      return res.status(400).json({ msg: 'Please provide a title, description, and date.' });
+    }
+
+    const newActivity = { shelter_id, title, description, activity_date, location };
+
+    await db.query('INSERT INTO activities SET ?', newActivity);
+
+    res.status(201).json({ msg: 'Activity created successfully' });
+
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+};
+
 module.exports = {
     registerShelter,
     loginShelter,
@@ -132,5 +153,6 @@ module.exports = {
     updateShelterProfile,
     getShelterDonations,
     getShelterActivities,
-    getShelterProfileById
+    getShelterProfileById,
+    addShelterActivity
 };

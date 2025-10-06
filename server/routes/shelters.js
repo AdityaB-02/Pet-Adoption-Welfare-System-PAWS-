@@ -29,9 +29,11 @@ router.get('/donations', auth, shelterController.getShelterDonations);
 
 // GET all activities for the logged-in shelter
 router.get('/activities', auth, shelterController.getShelterActivities);
+router.post('/activities', auth, shelterController.addShelterActivity);
 
 // PUT (Update) the logged-in shelter's own profile
 router.put('/me', auth, shelterController.updateShelterProfile);
+
 
 
 // ==========================================================

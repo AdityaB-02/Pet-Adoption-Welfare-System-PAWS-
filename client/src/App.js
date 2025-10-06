@@ -16,6 +16,7 @@ import ActivitiesPage from './pages/ActivitiesPage';
 import ShelterProfilePage from './pages/ShelterProfilePage';
 import ShelterInbox from './pages/ShelterInbox';
 import ShelterProfile from './components/ShelterProfile';
+import AddActivityPage from './pages/AddActivityPage';
 
 function App() {
   return (
@@ -53,7 +54,10 @@ function App() {
             <Route path="donations" element={<DonationsPage />} />   {/* <-- MOVED HERE */}
             <Route path="activities" element={<ActivitiesPage />} /> {/* <-- MOVED HERE */}
           </Route>
-
+            <Route 
+            path="/shelter/add-activity" 
+            element={ <ShelterPrivateRoute><AddActivityPage /></ShelterPrivateRoute> } 
+            />
           {/* Other protected routes that DON'T need the dashboard sidebar */}
           <Route 
             path="/shelter/add-pet" 
