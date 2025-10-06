@@ -18,11 +18,13 @@ import ShelterInbox from './pages/ShelterInbox';
 import ShelterProfile from './components/ShelterProfile';
 import AddActivityPage from './pages/AddActivityPage';
 import AddDonationPage from './pages/AddDonationsPage';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        <Navbar />
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<LandingPage />} /> 
