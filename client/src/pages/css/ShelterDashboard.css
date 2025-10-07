@@ -23,31 +23,29 @@
     padding: 0 15px;
     margin-bottom: 20px;
 }
-
 .sidebar-action {
     padding: 0 15px;
     margin-bottom: 25px;
 }
 
-.add-pet-button{
-    display: block;
-    width: 100%;
-    padding: 12px;
-    background-color: #007bff;
-    color: white;
+.add-pet-button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: var(--brand, #355e3b);
+    color: var(--brand-contrast, white);
     text-align: center;
-    border-radius: 8px;
+    border-radius: var(--radius-sm, 8px);
     text-decoration: none;
     font-weight: 600;
-    transition: background-color 0.2s ease;
-    padding: 15px;
-    margin-left: 800px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
 .add-pet-button:hover {
-    background-color: #0056b3;
+    background-color: #0284c7;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
 }
-
 
 .dashboard-sidebar ul {
   list-style: none;

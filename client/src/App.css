@@ -1,4 +1,15 @@
 .App {
   text-align: center;
+  /* Reserve space for fixed navbar to prevent content overlap */
+  padding-top: 60px;
+}
+
+/* Optional layout helpers */
+.page-section { padding: 24px 0; }
+.card {
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #e5e7eb);
+  border-radius: var(--radius-md, 12px);
+  box-shadow: var(--shadow, 0 10px 30px rgba(0,0,0,0.06));
 }
 
