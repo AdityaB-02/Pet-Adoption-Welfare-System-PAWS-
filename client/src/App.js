@@ -18,26 +18,28 @@ import ShelterInbox from './pages/ShelterInbox';
 import ShelterProfile from './components/ShelterProfile';
 import AddActivityPage from './pages/AddActivityPage';
 import AddDonationPage from './pages/AddDonationsPage';
+import UserInbox from './pages/UserInbox';
 import Navbar from './components/Navbar';
 
 function App() {
-  return (
-    <BrowserRouter>
-      <div className="App">
+  return (
+    <BrowserRouter>
+      <div className="App">
         <Navbar />
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<LandingPage />} /> 
-          <Route path="/pets" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/shelter/register" element={<ShelterRegisterPage />} />
-          <Route path="/shelter/login" element={<ShelterLoginPage />} />
-          <Route path="/shelters/:id" element={<ShelterProfilePage />} />
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<LandingPage />} /> 
+          <Route path="/pets" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/my-messages" element={<UserInbox />} />
+          <Route path="/shelter/register" element={<ShelterRegisterPage />} />
+          <Route path="/shelter/login" element={<ShelterLoginPage />} />
+          <Route path="/shelters/:id" element={<ShelterProfilePage />} />
           {/* These two routes have been moved below */}
-          {/* <Route path="/shelter/donations" ... /> */}
-          {/* <Route path="/shelter/activities" ... /> */}
-          
+          {/* <Route path="/shelter/donations" ... /> */}
+          {/* <Route path="/shelter/activities" ... /> */}
+          {/* --- Shelter Private Routes --- */}
           {/* --- Shelter Private Routes --- */}
 
           <Route 
