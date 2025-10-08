@@ -14,6 +14,7 @@
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 3.5rem;
     margin: 0;
+    color: white;
     font-weight: 600;
     letter-spacing: -0.5px;
 }
@@ -21,6 +22,7 @@
 .landing-header p {
     font-size: 1.25rem;
     margin-top: 10px;
+    color: white;
     opacity: 0.9;
 }
 

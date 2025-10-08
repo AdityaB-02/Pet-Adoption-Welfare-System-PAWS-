@@ -3,6 +3,7 @@
     display: flex;
     min-height: 100vh;
     background-color: #f8f9fa; /* Light grey background for the page */
+    padding-top: 72px; /* push content below fixed navbar; adjust to navbar height */
 }
 
 /* === Sidebar === */
@@ -229,6 +230,16 @@
 .pet-card-actions .delete-btn {
     border-color: #dc3545;
     color: #dc3545;
+}
+
+.pet-card-actions .edit-btn-link {
+    color: #000000;
+    
+}
+
+/* Ensure the actual button text inside the edit link is black */
+.pet-card-actions .edit-btn-link button {
+    color: #000000 !important;
 }
 
 .pet-card-actions .delete-btn:hover {
