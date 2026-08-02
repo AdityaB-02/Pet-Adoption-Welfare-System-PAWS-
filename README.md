@@ -100,7 +100,7 @@ These tables are connected through relational mappings to maintain data integrit
 ### Landing Page
 
 <p align="center">
-  <img src="assets/landing_page.jpg" width="90%" alt="Landing Page">
+  <img src="assests/landing_page.jpg" width="90%" alt="Landing Page">
 </p>
 
 ---
@@ -108,22 +108,22 @@ These tables are connected through relational mappings to maintain data integrit
 ## 👤 User Interface
 
 <p align="center">
-  <img src="assets/User_loginPage.jpg" width="48%" alt="User Login">
-  <img src="assets/user_registerPage.jpg" width="48%" alt="User Registration">
+  <img src="assests/User_loginPage.jpg" width="48%" alt="User Login">
+  <img src="assests/user_registerPage.jpg" width="48%" alt="User Registration">
 </p>
 
 <p align="center">
-  <img src="assets/user_homePage.jpg" width="48%" alt="User Home">
-  <img src="assets/user_petDetails.jpg" width="48%" alt="Pet Details">
+  <img src="assests/user_homePage.jpg" width="48%" alt="User Home">
+  <img src="assests/user_petDetails.jpg" width="48%" alt="Pet Details">
 </p>
 
 <p align="center">
-  <img src="assets/user_shelterinfo.jpg" width="48%" alt="Shelter Information">
-  <img src="assets/user_chatSection.jpg" width="48%" alt="Chat Section">
+  <img src="assests/user_shelterinfo.jpg" width="48%" alt="Shelter Information">
+  <img src="assests/user_chatSection.jpg" width="48%" alt="Chat Section">
 </p>
 
 <p align="center">
-  <img src="assets/user_msgBox.jpg" width="48%" alt="User Message Box">
+  <img src="assests/user_msgBox.jpg" width="48%" alt="User Message Box">
 </p>
 
 ---
@@ -131,22 +131,22 @@ These tables are connected through relational mappings to maintain data integrit
 ## 🏠 Shelter Dashboard
 
 <p align="center">
-  <img src="assets/shelterLogin.jpg" width="48%" alt="Shelter Login">
-  <img src="assets/shelter_dashboard.jpg" width="48%" alt="Shelter Dashboard">
+  <img src="assests/shelterLogin.jpg" width="48%" alt="Shelter Login">
+  <img src="assests/shelter_dashboard.jpg" width="48%" alt="Shelter Dashboard">
 </p>
 
 <p align="center">
-  <img src="assets/shelter_addPet.jpg" width="48%" alt="Add Pet">
-  <img src="assets/shelterProfile.jpg" width="48%" alt="Shelter Profile">
+  <img src="assests/shelter_addPet.jpg" width="48%" alt="Add Pet">
+  <img src="assests/shelterProfile.jpg" width="48%" alt="Shelter Profile">
 </p>
 
 <p align="center">
-  <img src="assets/shelterInbox.jpg" width="48%" alt="Shelter Inbox">
-  <img src="assets/shelterActivities.jpg" width="48%" alt="Shelter Activities">
+  <img src="assests/shelterInbox.jpg" width="48%" alt="Shelter Inbox">
+  <img src="assests/shelterActivities.jpg" width="48%" alt="Shelter Activities">
 </p>
 
 <p align="center">
-  <img src="assets/shelterDonations.jpg" width="48%" alt="Shelter Donations">
+  <img src="assests/shelterDonations.jpg" width="48%" alt="Shelter Donations">
 </p>
 
 ---
@@ -154,8 +154,8 @@ These tables are connected through relational mappings to maintain data integrit
 ## 🗄️ Database Design
 
 <p align="center">
-  <img src="assets/ER.png" width="48%" alt="Entity Relationship Diagram">
-  <img src="assets/dig.png" width="48%" alt="Database Schema">
+  <img src="assests/ER.png" width="48%" alt="Entity Relationship Diagram">
+  <img src="assests/dig.png" width="48%" alt="Database Schema">
 </p>
 ---
 
